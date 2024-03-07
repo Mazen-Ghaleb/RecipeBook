@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.module';
@@ -6,7 +7,8 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {  
-    
+    recipesChanged = new Subject<Recipe[]>();
+
     private recipes: Recipe[] =[
         new Recipe(
             'Combo Meal',
@@ -21,6 +23,12 @@ export class RecipeService {
             [
                 new Ingredient('Buns', 2), 
                 new Ingredient('Meat', 1)
+            ]),
+        new Recipe(
+            'BURGER', 
+            'This is simply a test', 
+            'https://www.allrecipes.com/thmb/5JVfA7MxfTUPfRerQMdF-nGKsLY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25473-the-perfect-basic-burger-DDMFS-4x3-56eaba3833fd4a26a82755bcd0be0c54.jpg',
+            [
             ])
     ];
 
@@ -35,7 +43,26 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
+    getNumberOfRecipes(){
+        return this.recipes.length;
+    }
+
     addIngredientsToShoppingList(ingredients: Ingredient[]){
         this.shoppingListService.onAddIngredients(ingredients);
+    }
+
+    addRecipe(recipe: Recipe){
+        this.recipes.push(recipe);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe){
+        this.recipes[index] = newRecipe;
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number){
+        this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice());
     }
 }
