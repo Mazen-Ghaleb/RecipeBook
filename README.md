@@ -1,27 +1,42 @@
-# CourseApp
+# Recipe Book Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+This project is developed as part of the
+[Angular - The Complete Guide (2024 Edition)](https://www.udemy.com/course/the-complete-guide-to-angular-2) course on Udemy, taught by Maximilian Schwarzmüller. The course provides comprehensive instruction on Angular, guiding through the creation of a fully functional recipe book application.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Course Information](#course-information)
+- [Running the Application](#running-the-application)
 
-## Code scaffolding
+## Project Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Recipe Book project is a single-page application (SPA) built with Angular. It allows users to create, manage, and share recipes. The application demonstrates core Angular concepts including components, services, routing, forms, and HTTP requests.
 
-## Build
+## Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Recipe Management: Create, edit, delete, and view recipes.
+- Ingredient Management: Add ingredients to recipes and a shopping list.
+- User Authentication: Secure user registration and login functionality.
+- Routing: Navigate between different views within the application.
+- Reactive Forms: Utilize Angular's powerful form handling capabilities.
+- State Management: Manage application state using services and observables.
+- HTTP Integration: Fetch and store data using HTTP requests.
 
-## Running unit tests
+## Course Information
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Course Title: Angular - The Complete Guide (2024 Edition)
+- Instructor: Maximilian Schwarzmüller
+- Platform: Udemy
+- Course Link: [Udemy Course Link](https://www.udemy.com/course/the-complete-guide-to-angular-2)
 
-## Running end-to-end tests
+## Running the Application
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Start the development server by running the following command in the project directory:
 
-## Further help
+```bash
+ng serve
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Open your browser and navigate to http://localhost:4200/.
