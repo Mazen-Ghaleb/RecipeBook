@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RecipeService } from '../recipes/recipe.service';
 import { Recipe } from '../recipes/recipe.model';
-import { exhaustMap, map, take, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class DataStorageService {
   constructor(
     private http: HttpClient,
