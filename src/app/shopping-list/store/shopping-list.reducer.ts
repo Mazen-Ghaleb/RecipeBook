@@ -17,16 +17,40 @@ const initialState: State = {
   editedIngrident: null,
   editedIngridentIndex: -1,
 };
+
+function addIngredient(state: State, newIngredient: Ingredient) {
+  const ingredient = state.ingredients.find(
+    (ig) => ig.name === newIngredient.name
+  );
+  if (ingredient) {
+    const updatedIngredient = {
+      ...ingredient,
+      amount: ingredient.amount + newIngredient.amount,
+    };
+    const ingredients = [...state.ingredients];
+    ingredients[state.ingredients.indexOf(ingredient)] = updatedIngredient;
+    return {
+      ...state,
+      ingredients,
+    };
+  }
+  return {
+    ...state,
+    ingredients: [...state.ingredients, newIngredient],
+  };
+}
+
 export const shoppingListReducer = createReducer(
   initialState,
-  on(ShoppingListActions.addIngredient, (state, action) => ({
-    ...state,
-    ingredients: [...state.ingredients, action.ingredient],
-  })),
-  on(ShoppingListActions.addIngredients, (state, action) => ({
-    ...state,
-    ingredients: [...state.ingredients, ...action.ingredients],
-  })),
+  on(ShoppingListActions.addIngredient, (state, action) => {
+    return addIngredient(state, action.ingredient);
+  }),
+  on(ShoppingListActions.addIngredients, (state, action) => {
+    for (const ingredient of action.ingredients) {
+      state = addIngredient(state, ingredient);
+    }
+    return state;
+  }),
   on(ShoppingListActions.updateIngredient, (state, action) => {
     const ingredient = state.ingredients[state.editedIngridentIndex];
     const updatedIngredient = {
