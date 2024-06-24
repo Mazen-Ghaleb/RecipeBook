@@ -39,7 +39,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
-      // const recipe = this.recipeService.getRecipe(this.id);
       this.storeSub = this.store
         .select('recipes')
         .pipe(
@@ -95,9 +94,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.editMode) {
-      // this.recipeService.updateRecipe(this.id, this.recipeForm.value);
       this.store.dispatch(
         RecipeActions.updateRecipe({
           index: this.id,
@@ -106,11 +104,17 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       );
       this.onCancel();
     } else {
-      // this.recipeService.addRecipe(this.recipeForm.value);
       this.store.dispatch(
         RecipeActions.addRecipe({ recipe: this.recipeForm.value })
       );
-      this.router.navigate(['../'], { relativeTo: this.route });
+      const newIdPromise = firstValueFrom(
+        this.store.select('recipes').pipe(
+          take(1),
+          map((recipesState) => recipesState.recipes.length - 1)
+        )
+      );
+      const newId = await newIdPromise;
+      this.router.navigate(['../', newId], { relativeTo: this.route });
     }
   }
 

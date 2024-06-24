@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, switchMap } from 'rxjs';
 
@@ -45,9 +45,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToShoppingList() {
-    // this.recipeService.addIngredientsToShoppingList(
-    //   this.currentRecipe.ingredients
-    // );
     this.store.dispatch(
       ShoppingListActions.addIngredients({
         ingredients: this.currentRecipe.ingredients,
@@ -56,7 +53,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    // this.recipeService.deleteRecipe(this.currentRecipeId);
     this.store.dispatch(
       RecipeActions.deleteRecipe({ index: this.currentRecipeId })
     );
