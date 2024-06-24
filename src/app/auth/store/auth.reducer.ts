@@ -16,7 +16,12 @@ const initialState: State = {
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.login, (state, action) => ({
+  on(AuthActions.loginStart, AuthActions.signupStart, (state) => ({
+    ...state,
+    authError: null,
+    loading: true,
+  })),
+  on(AuthActions.authenticateSuccess, (state, action) => ({
     ...state,
     user: new User(
       action.email,
@@ -27,12 +32,7 @@ export const authReducer = createReducer(
     authError: null,
     loading: false,
   })),
-  on(AuthActions.login_start, (state) => ({
-    ...state,
-    authError: null,
-    loading: true,
-  })),
-  on(AuthActions.login_fail, (state, action) => ({
+  on(AuthActions.authenticateFail, (state, action) => ({
     ...state,
     user: null,
     authError: action.errorMessage,
@@ -41,5 +41,9 @@ export const authReducer = createReducer(
   on(AuthActions.logout, (state) => ({
     ...state,
     user: null,
+  })),
+  on(AuthActions.clearError, (state) => ({
+    ...state,
+    authError: null,
   }))
 );
