@@ -4,8 +4,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { RecipeService } from './recipes/recipe.service';
-import { DataStorageService } from './shared/data-storage.service';
 import { RecipeResolverService } from './recipes/recipes-resolver.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
@@ -14,8 +12,6 @@ import { AuthGuard } from './auth/auth.guard';
   providers: [
     AuthGuard,
     AuthService,
-    DataStorageService,
-    RecipeService,
     RecipeResolverService,
     AppRoutingModule,
     {
