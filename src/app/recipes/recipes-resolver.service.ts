@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Resolve,
+  Router,
   RouterStateSnapshot,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -16,10 +17,16 @@ import { Observable, map, of, switchMap, take } from 'rxjs';
 export class RecipeResolverService implements Resolve<Recipe[]> {
   constructor(
     private store: Store<fromApp.AppState>,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<Recipe[]> {
+    const id = +route.params['id']; // Assuming 'id' is a number
+
     return this.store.select('recipes').pipe(
       take(1),
       map((recipesState) => recipesState.recipes),
@@ -28,10 +35,21 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
           this.store.dispatch(RecipeActions.fetchRecipes());
           return this.actions$.pipe(
             ofType(RecipeActions.setRecipes),
-            take(1)
-          ) as Observable<Recipe[]>;
+            take(1),
+            map((fetchedRecipes) => {
+              // Check if id is valid after fetching
+              if (id < 0 || id >= fetchedRecipes.recipes.length) {
+                this.router.navigate(['/recipes']); // Redirect if out of bounds
+              }
+              return fetchedRecipes.recipes;
+            })
+          );
         } else {
-          return of(recipes) as Observable<Recipe[]>;
+          // Check if id is valid without fetching
+          if (id < 0 || id >= recipes.length) {
+            this.router.navigate(['/recipes']); // Redirect if out of bounds
+          }
+          return of(recipes);
         }
       })
     );
