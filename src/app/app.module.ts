@@ -26,8 +26,9 @@ import { RecipeEffects } from './recipes/store/recipe.effects';
     SharedModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects, RecipeEffects]),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot(),
+    // StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    environment.production ? [] : StoreRouterConnectingModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
