@@ -33,10 +33,29 @@ The Recipe Book project is a single-page application (SPA) built with Angular. I
 
 ## Running the Application
 
-1. Start the development server by running the following command in the project directory:
+There are multiple ways to run the applications
 
-```bash
-ng serve
-```
+1. **View on GitHub Pages:**  
+   Check the application deployed on [GitHub Pages](https://mazen-ghaleb.github.io/RecipeBook/browser). Please note that some functionality, such as service workers and HTTP requests, may not work as expected.
 
-2. Open your browser and navigate to http://localhost:4200/.
+2. **Run Locally:**  
+   Clone the repository and start the development server by running the following command in the project directory:
+
+   ```bash
+   ng serve --configuration "production" --open
+   ```
+
+3. **Build and Deploy:**  
+   Build the application by running the following command in the project directory:
+
+   ```bash
+    ng build --configuration "production"
+   ```
+
+   The build artifacts will be stored in the dist/ directory. To deploy, navigate to the dist/recipe-book/browser directory and run the following command:
+
+   ```bash
+   http-server --gzip --proxy http://localhost:8080?
+   ```
+
+   The application will be available at [localhost:8080](http://localhost:8080).
