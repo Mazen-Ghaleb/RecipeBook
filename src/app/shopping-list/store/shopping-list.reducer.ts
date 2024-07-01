@@ -9,7 +9,8 @@ export interface State {
 }
 
 const initialState: State = {
-  ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
+  // ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
+  ingredients: [],
   editedIngrident: null,
   editedIngridentIndex: -1,
 };
@@ -49,18 +50,47 @@ export const shoppingListReducer = createReducer(
   }),
   on(ShoppingListActions.updateIngredient, (state, action) => {
     const ingredient = state.ingredients[state.editedIngridentIndex];
-    const updatedIngredient = {
-      ...ingredient,
-      ...action.ingredient,
-    };
-    const updatedIngredients = [...state.ingredients];
-    updatedIngredients[state.editedIngridentIndex] = updatedIngredient;
-    return {
-      ...state,
-      ingredients: updatedIngredients,
-      editedIngrident: null,
-      editedIngridentIndex: -1,
-    };
+    const existingIngredient = state.ingredients.find(
+      (ig) => ig.name === action.ingredient.name
+    );
+    if (
+      existingIngredient &&
+      state.ingredients.indexOf(existingIngredient) !==
+        state.editedIngridentIndex
+    ) {
+      const totalAmount = existingIngredient.amount + action.ingredient.amount;
+      const updatedIngredient = {
+        ...existingIngredient,
+        ...action.ingredient,
+        amount: totalAmount,
+      };
+      const updatedIngredients = [...state.ingredients];
+      updatedIngredients[state.editedIngridentIndex] = updatedIngredient;
+      updatedIngredients.splice(
+        state.ingredients.indexOf(existingIngredient),
+        1
+      );
+
+      return {
+        ...state,
+        ingredients: updatedIngredients,
+        editedIngrident: null,
+        editedIngridentIndex: -1,
+      };
+    } else {
+      const updatedIngredient = {
+        ...ingredient,
+        ...action.ingredient,
+      };
+      const updatedIngredients = [...state.ingredients];
+      updatedIngredients[state.editedIngridentIndex] = updatedIngredient;
+      return {
+        ...state,
+        ingredients: updatedIngredients,
+        editedIngrident: null,
+        editedIngridentIndex: -1,
+      };
+    }
   }),
   on(ShoppingListActions.deleteIngredient, (state) => ({
     ...state,
