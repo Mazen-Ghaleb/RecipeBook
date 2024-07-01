@@ -1,0 +1,100 @@
+{
+  "configVersion": 1,
+  "timestamp": 1719847528255,
+  "index": "RecipeBook/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "RecipeBook/chunk-3ULHBRQA.js",
+        "RecipeBook/chunk-BKH2LAIR.js",
+        "RecipeBook/chunk-GKNBFJRL.js",
+        "RecipeBook/chunk-OE2LEDXR.js",
+        "RecipeBook/chunk-Q73L2NTX.js",
+        "RecipeBook/chunk-SAXFO4YA.js",
+        "RecipeBook/chunk-WJKLNZU6.js",
+        "RecipeBook/chunk-XQKI6ESN.js",
+        "RecipeBook/favicon.ico",
+        "RecipeBook/index.html",
+        "RecipeBook/main-NCLP7KQH.js",
+        "RecipeBook/polyfills-RX4V3J3S.js",
+        "RecipeBook/styles-6MUFXDO4.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "RecipeBook/media/glyphicons-halflings-regular-ACNUA6UY.ttf",
+        "RecipeBook/media/glyphicons-halflings-regular-JOUF32XT.woff",
+        "RecipeBook/media/glyphicons-halflings-regular-QXYEM3FU.svg",
+        "RecipeBook/media/glyphicons-halflings-regular-W4DYDFZM.woff2"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "firebase-database-calls",
+      "patterns": [
+        "https:\\/\\/[^/]*\\.firebaseio\\.com\\/.*"
+      ],
+      "strategy": "freshness",
+      "maxSize": 10,
+      "maxAge": 86400000,
+      "timeoutMs": 10000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "RecipeBook/chunk-3ULHBRQA.js": "e41253ad8a2373650a00d7a314ec61b042117998",
+    "RecipeBook/chunk-BKH2LAIR.js": "fd863b1d84fc1f3971ccba41517302364223acc4",
+    "RecipeBook/chunk-GKNBFJRL.js": "238aca68e6613f88049030f493d48e317975e689",
+    "RecipeBook/chunk-OE2LEDXR.js": "0bb4ac852b97362dc41c6c251055a7802dd1181d",
+    "RecipeBook/chunk-Q73L2NTX.js": "f6f708af6270e5467a919fb26dfa5905e51a5d64",
+    "RecipeBook/chunk-SAXFO4YA.js": "08fa23608c41bea7efe60e05e40eb6c2ece6702a",
+    "RecipeBook/chunk-WJKLNZU6.js": "01831983f4afd90c3056b1d94941167eeb3ab9d5",
+    "RecipeBook/chunk-XQKI6ESN.js": "c9dfcdbf09c224fb03008039b37f72a8985352c5",
+    "RecipeBook/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "RecipeBook/index.html": "19670b53c5ec8c908e6c7427f42448c42afee8a5",
+    "RecipeBook/main-NCLP7KQH.js": "fb6c20b5813f93367236ae065c826ee17ccebad8",
+    "RecipeBook/media/glyphicons-halflings-regular-ACNUA6UY.ttf": "44bc1850f570972267b169ae18f1cb06b611ffa2",
+    "RecipeBook/media/glyphicons-halflings-regular-JOUF32XT.woff": "278e49a86e634da6f2a02f3b47dd9d2a8f26210f",
+    "RecipeBook/media/glyphicons-halflings-regular-QXYEM3FU.svg": "de51a8494180a6db074af2dee2383f0a363c5b08",
+    "RecipeBook/media/glyphicons-halflings-regular-W4DYDFZM.woff2": "ca35b697d99cae4d1b60f2d60fcd37771987eb07",
+    "RecipeBook/polyfills-RX4V3J3S.js": "6b4c4ea33aa92bce0b91df442a680ed73e4303db",
+    "RecipeBook/styles-6MUFXDO4.css": "2d34ea4cba602fb37a35b2a3c13fd9e0db8ac46c"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
